@@ -1,0 +1,82 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.hero {
+  background: #0d0d0d;
+  color: #fff;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top:0; left:0; right:0; bottom:0;
+  background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(200,30,30,0.05) 38px, rgba(200,30,30,0.05) 39px);
+}
+.logo-img {
+  width: 100px; height: 100px; border-radius: 16px;
+  object-fit: cover; border: 2px solid #222;
+  position: relative; z-index: 1;
+  display: block; margin: 0 auto 1rem;
+}
+.hero-tagline { font-size: 12px; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; position: relative; z-index:1; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1.25rem; position: relative; z-index:1; }
+.tag { background: rgba(200,30,30,0.15); border: 1px solid rgba(200,30,30,0.4); color: #f87171; font-size: 11px; padding: 4px 14px; border-radius: 999px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+nav { background: #111; display: flex; justify-content: center; border-bottom: 1px solid #222; flex-wrap: wrap; }
+nav a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 11px; padding: 11px 15px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid transparent; cursor: pointer; }
+nav a:hover, nav a.active { color: #c81e1e; border-bottom-color: #c81e1e; }
+
+section { padding: 2.5rem 1.5rem; background: var(--color-background-primary); }
+section.mid { background: var(--color-background-secondary); }
+section.dark { background: #111; }
+
+.section-title { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.section-title-light { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+.section-line { width: 32px; height: 2px; background: #c81e1e; margin-bottom: 1.5rem; }
+
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.product-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.1rem 1rem; }
+.product-icon { font-size: 24px; margin-bottom: 8px; }
+.product-card h3 { font-size: 13px; font-weight: 500; color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+.product-card p { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; line-height: 1.5; }
+
+.highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 0; }
+.highlight-card { background: #1a1a1a; border: 0.5px solid #2a2a2a; border-radius: var(--border-radius-lg); padding: 1.1rem; }
+.highlight-card .pill { font-size: 10px; background: rgba(200,30,30,0.2); color: #f87171; border-radius: 999px; padding: 2px 10px; letter-spacing: 1px; text-transform: uppercase; display: inline-block; margin-bottom: 8px; }
+.highlight-card h3 { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); }
+.highlight-card p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.5; }
+
+.sizes-box { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+.size-group h4 { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: #c81e1e; margin-bottom: 6px; }
+.size-group p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+
+.process-steps { display: flex; flex-wrap: wrap; gap: 10px; }
+.step { flex: 1; min-width: 130px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem; }
+.step-num { font-size: 24px; font-weight: 500; color: #c81e1e; opacity: 0.3; line-height: 1; }
+.step h4 { font-size: 13px; font-weight: 500; margin-top: 6px; }
+.step p { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; line-height: 1.5; }
+
+.contact-box { background: #0d0d0d; border-radius: var(--border-radius-lg); padding: 1.75rem 1.5rem; border: 0.5px solid #222; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px; }
+.contact-item { display: flex; align-items: flex-start; gap: 12px; }
+.contact-icon { width: 38px; height: 38px; flex-shrink: 0; background: rgba(200,30,30,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 0.5px solid rgba(200,30,30,0.25); }
+.contact-icon i { font-size: 17px; color: #c81e1e; }
+.contact-item p { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; }
+.contact-item a, .contact-item span { font-size: 13px; color: rgba(255,255,255,0.85); text-decoration: none; display: block; margin-top: 3px; }
+
+.footer { background: #080808; text-align: center; padding: 1.25rem; font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; text-transform: uppercase; border-top: 0.5px solid #1a1a1a; }
+.footer span { color: #c81e1e; }
+
+.cta-btn { display: inline-block; background: #c81e1e; color: #fff; border: none; padding: 10px 22px; border-radius: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; margin-top: 1.25rem; }
+.address-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,30,30,0.12); border: 1px solid rgba(200,30,30,0.3); border-radius: 999px; padding: 5px 14px; font-size: 12px; color: #f87171; margin-top: 1rem; position: relative; z-index:1; }
+
+/* animación de entrada para cards */
+.product-card, .highlight-card, .step {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.product-card.visible, .highlight-card.visible, .step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
