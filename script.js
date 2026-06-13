@@ -72,11 +72,16 @@ onAuthChange(user => applyUser(user));
 // ── Registro ──────────────────────────────────────────
 document.getElementById('registerForm').addEventListener('submit', async e => {
   e.preventDefault();
-  const name  = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass  = document.getElementById('regPass').value;
-  const errEl = document.getElementById('regError');
-  const btn   = e.target.querySelector('button[type=submit]');
+  const name        = document.getElementById('regName').value.trim();
+  const email       = document.getElementById('regEmail').value.trim();
+  const pass        = document.getElementById('regPass').value;
+  const passConfirm = document.getElementById('regPassConfirm').value;
+  const errEl       = document.getElementById('regError');
+  const btn         = e.target.querySelector('button[type=submit]');
+
+  if (pass !== passConfirm) {
+    errEl.textContent = 'Las contraseñas no coinciden.'; return;
+  }
 
   btn.disabled = true;
   btn.textContent = 'Registrando...';
