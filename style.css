@@ -22,6 +22,23 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
+  transition: background 0.25s, color 0.25s;
+}
+
+/* ── Modo claro ── */
+body.light {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ececec;
+  --bg-card: #fff;
+  --bg-card-light: #fafafa;
+  --border: #e0e0e0;
+  --border-light: #d5d5d5;
+  --red: #b91c1c;
+  --red-soft: rgba(185,28,28,0.08);
+  --red-border: rgba(185,28,28,0.25);
+  --text-primary: #111;
+  --text-secondary: #555;
+  --text-muted: rgba(0,0,0,0.4);
 }
 
 .sr-only {
@@ -84,6 +101,16 @@ body {
   margin-top: 1.25rem; position: relative; z-index: 1;
 }
 .address-badge i { color: var(--red); font-size: 14px; }
+
+/* ── Toggle modo ── */
+.theme-toggle {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 16px;
+  padding: 11px 14px; display: flex; align-items: center;
+  transition: color 0.2s;
+  margin-left: auto;
+}
+.theme-toggle:hover { color: var(--red); }
 
 /* ── Nav ── */
 nav {
@@ -241,6 +268,22 @@ section.dark { background: #0d0d0d; }
   border-top: 1px solid #141414;
 }
 .footer strong { color: var(--red); font-weight: 500; }
+
+/* ── Overrides modo claro para colores hardcodeados ── */
+body.light .hero { background: #fff; }
+body.light .hero::before { background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(185,28,28,0.03) 38px, rgba(185,28,28,0.03) 39px); }
+body.light .logo-wrap { background: #f0f0f0; border-color: #ddd; }
+body.light nav { background: rgba(255,255,255,0.92); border-bottom-color: #e0e0e0; }
+body.light section.dark { background: #ececec; }
+body.light .highlight-card { background: #fff; border-color: #e0e0e0; }
+body.light .highlight-card h3 { color: #111; }
+body.light .highlight-card p { color: #666; }
+body.light .contact-box { background: #fff; border-color: #e0e0e0; }
+body.light .contact-item a, body.light .contact-item span { color: #111; }
+body.light .footer { background: #e8e8e8; border-top-color: #d5d5d5; color: rgba(0,0,0,0.35); }
+body.light .address-badge { background: rgba(0,0,0,0.04); border-color: #ddd; color: #555; }
+body.light .hero-name { color: #111; }
+body.light .tag { background: rgba(185,28,28,0.08); border-color: rgba(185,28,28,0.3); }
 
 /* ── Animaciones de entrada ── */
 .animate {

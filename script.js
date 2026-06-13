@@ -1,3 +1,21 @@
+// Toggle modo claro/oscuro
+const toggle = document.getElementById('themeToggle');
+const icon = document.getElementById('themeIcon');
+
+function applyTheme(light) {
+  document.body.classList.toggle('light', light);
+  icon.className = light ? 'ti ti-moon' : 'ti ti-sun';
+}
+
+const saved = localStorage.getItem('theme');
+applyTheme(saved === 'light');
+
+toggle.addEventListener('click', () => {
+  const isLight = document.body.classList.toggle('light');
+  icon.className = isLight ? 'ti ti-moon' : 'ti ti-sun';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+
 // Animación de entrada para elementos con clase .animate
 const animateEls = document.querySelectorAll('.animate');
 
