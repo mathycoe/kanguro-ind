@@ -130,6 +130,12 @@ section.dark { background: #0d0d0d; }
   margin-bottom: 1.5rem; letter-spacing: -0.3px;
 }
 
+@media (min-width: 640px) {
+  .section-label, .section-heading, .section-heading-light {
+    text-align: center;
+  }
+}
+
 /* ── Products ── */
 .products-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px;
