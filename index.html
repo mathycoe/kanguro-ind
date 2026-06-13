@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanguro Indumentaria — Buenos Aires</title>
+  <title>Kanguro Indumentaria</title>
   <meta name="description" content="Indumentaria personalizada en Buenos Aires. Remeras, buzos, banderas, egresados y más. Pueyrredón 2293." />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https:; connect-src https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com;" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,15 +17,13 @@
   <div class="logo-wrap">
     <img class="logo-img" src="logo.jpg" alt="Logo Kanguro Indumentaria" />
   </div>
-  <p class="hero-name">Kanguro Indumentaria</p>
-  <p class="hero-tagline">Personalizada</p>
+  <p class="hero-name">Kanguro</p>
+  <p class="hero-tagline">Indumentaria Personalizada</p>
   <div class="hero-tags">
-    <span class="tag">Indumentaria</span>
     <span class="tag">Banderas</span>
-    <span class="tag">Rock</span>
-    <span class="tag">Egresados</span>
-    <span class="tag">Vuelta al cole</span>
-    <span class="tag">Regalos</span>
+    <span class="tag">Regalos</span>    
+    <span class="tag">Indumentaria de Artistica</span>
+    <span class="tag">Indumentaria de Egresados</span>
   </div>
   <div class="address-badge">
     <i class="ti ti-map-pin" aria-hidden="true"></i>
@@ -39,7 +37,6 @@
   <a data-section="talles">Talles</a>
   <a data-section="proceso">¿Cómo trabajamos?</a>
   <a data-section="contacto">Contacto</a>
-  <a data-section="galeria">Galería</a>
   <a data-section="opiniones">Opiniones</a>
   <div class="nav-right">
     <button class="nav-auth-btn" id="navAuthBtn">
@@ -61,6 +58,7 @@
       <h3 class="modal-title">Crear cuenta</h3>
       <form class="auth-form" id="registerForm">
         <input type="text"  id="regName"  placeholder="Nombre" maxlength="40" required />
+        <input type="tel"   id="regPhone" placeholder="Teléfono (ej: 1134567890)" maxlength="20" required />
         <input type="email" id="regEmail" placeholder="Email" required />
         <input type="password" id="regPass" placeholder="Contraseña" minlength="6" required />
         <input type="password" id="regPassConfirm" placeholder="Confirmá la contraseña" minlength="6" required />
@@ -99,10 +97,17 @@
         <div>
           <p id="userName" style="font-weight:600; font-size:14px;"></p>
           <p id="userEmail" style="font-size:12px; color:var(--text-secondary);"></p>
-          <span id="verifiedBadge" class="badge-verified"><i class="ti ti-circle-check"></i> Email verificado</span>
-          <span id="unverifiedBadge" class="badge-unverified" style="display:none"><i class="ti ti-alert-circle"></i> Sin verificar</span>
+          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:4px;">
+            <span id="verifiedBadge" class="badge-verified"><i class="ti ti-circle-check"></i> Email verificado</span>
+            <span id="unverifiedBadge" class="badge-unverified" style="display:none"><i class="ti ti-alert-circle"></i> Sin verificar</span>
+            <span id="roleBadge" class="badge-role" style="display:none"></span>
+          </div>
         </div>
       </div>
+      <button class="admin-open-btn" id="openAdminPanel" style="display:none">
+        <i class="ti ti-shield-check" id="adminBtnIcon"></i>
+        <span id="adminBtnLabel">Panel Admin</span>
+      </button>
       <button class="auth-logout" id="logoutBtn">
         <i class="ti ti-logout"></i> Cerrar sesión
       </button>
@@ -115,36 +120,42 @@
   <p class="section-label">Catálogo</p>
   <h2 class="section-heading">Nuestros productos</h2>
   <div class="products-grid">
-    <div class="product-card animate">
+    <button class="product-card animate" data-cat="remeras">
       <div class="product-icon">👕</div>
       <h3>Remeras</h3>
       <p>Básicas y personalizadas, algodón y modal</p>
-    </div>
-    <div class="product-card animate">
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
+    <button class="product-card animate" data-cat="buzos">
       <div class="product-icon">🧥</div>
       <h3>Buzos y camperas</h3>
       <p>Canguro, cuello redondo, deportivos</p>
-    </div>
-    <div class="product-card animate">
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
+    <button class="product-card animate" data-cat="banderas">
       <div class="product-icon">🚩</div>
       <h3>Banderas</h3>
       <p>Sublimadas, con flecos, combos disponibles</p>
-    </div>
-    <div class="product-card animate">
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
+    <button class="product-card animate" data-cat="matero">
       <div class="product-icon">☕</div>
       <h3>Set matero</h3>
       <p>Termos, jarras, tazas personalizadas</p>
-    </div>
-    <div class="product-card animate">
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
+    <button class="product-card animate" data-cat="cole">
       <div class="product-icon">🎒</div>
       <h3>Vuelta al cole</h3>
       <p>Cartucheras, etiquetas, pinchitos y más</p>
-    </div>
-    <div class="product-card animate">
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
+    <button class="product-card animate" data-cat="regalos">
       <div class="product-icon">🎁</div>
       <h3>Regalos</h3>
       <p>Todo personalizado para el Día del Padre y más</p>
-    </div>
+      <span class="product-card-ver">Ver fotos <i class="ti ti-arrow-right"></i></span>
+    </button>
   </div>
   </div>
 </section>
@@ -225,11 +236,6 @@
       <p>Recibís tu pedido con calidad garantizada</p>
     </div>
   </div>
-  <div class="cta-wrap">
-    <button class="cta-btn" id="ctaOrder">
-      Hacer un pedido <i class="ti ti-arrow-up-right" aria-hidden="true"></i>
-    </button>
-  </div>
   </div>
 </section>
 
@@ -262,23 +268,87 @@
       </div>
     </div>
   </div>
+
+  <!-- Formulario de pedido -->
+  <div class="order-section">
+    <h3 class="order-title"><i class="ti ti-clipboard-list"></i> Hacer un pedido</h3>
+
+    <div id="orderGate" class="comment-gate">
+      <i class="ti ti-lock"></i>
+      <p>Tenés que <a href="#" id="orderGateLogin">iniciar sesión</a> para hacer un pedido.</p>
+    </div>
+
+    <div id="orderSuccess" class="order-success" style="display:none">
+      <i class="ti ti-circle-check"></i>
+      <p>¡Pedido enviado! Te contactaremos a la brevedad.</p>
+      <button class="order-new-btn" id="orderNewBtn">Hacer otro pedido</button>
+    </div>
+
+    <form class="order-form" id="orderForm" style="display:none">
+      <div class="order-row">
+        <div class="order-field">
+          <label>Producto</label>
+          <select id="orderProduct">
+            <option value="Remeras">👕 Remeras</option>
+            <option value="Buzos y camperas">🧥 Buzos y camperas</option>
+            <option value="Banderas">🚩 Banderas</option>
+            <option value="Set matero">☕ Set matero</option>
+            <option value="Vuelta al cole">🎒 Vuelta al cole</option>
+            <option value="Regalos">🎁 Regalos</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="order-field">
+          <label>Talle</label>
+          <input type="text" id="orderSize" placeholder="Ej: M, XL, 3XL, talle 8..." maxlength="30" />
+        </div>
+        <div class="order-field order-field--sm">
+          <label>Cantidad</label>
+          <input type="number" id="orderQty" min="1" max="999" value="1" />
+        </div>
+      </div>
+      <div class="order-field">
+        <label>Detalles del pedido</label>
+        <textarea id="orderMsg" placeholder="Describí qué necesitás: colores, diseño, texto, para cuándo lo necesitás, etc." maxlength="600" rows="4"></textarea>
+      </div>
+      <p class="order-error" id="orderError"></p>
+      <button type="submit" class="cta-btn" style="margin-top:.5rem">
+        Enviar pedido <i class="ti ti-send"></i>
+      </button>
+    </form>
+
+    <!-- Mis pedidos -->
+    <div id="myOrdersSection" style="display:none">
+      <h4 class="my-orders-title">Mis pedidos</h4>
+      <div id="myOrdersList" class="my-orders-list"></div>
+    </div>
+  </div>
   </div>
 </section>
 
-<section id="galeria" class="mid">
-  <div class="inner">
-  <p class="section-label">Nuestro trabajo</p>
-  <h2 class="section-heading">Galería de productos</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item animate">👕</div>
-    <div class="gallery-item animate">🧥</div>
-    <div class="gallery-item animate">🚩</div>
-    <div class="gallery-item animate">🎒</div>
-    <div class="gallery-item animate">☕</div>
-    <div class="gallery-item animate">🎁</div>
+<!-- Modal galería de categoría -->
+<div class="modal-overlay" id="galleryCatOverlay">
+  <div class="modal gallery-cat-modal">
+    <div class="gallery-cat-modal-header">
+      <span id="galleryCatTitle"></span>
+      <button class="modal-close" id="galleryCatClose"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="gallery-cat-grid" id="galleryCatGrid"></div>
+    <div id="galleryCatEmpty" class="gallery-cat-empty" style="display:none">
+      <i class="ti ti-photo-off"></i>
+      <p>Todavía no hay fotos en esta categoría.</p>
+    </div>
   </div>
+</div>
+
+<!-- Lightbox foto individual -->
+<div class="modal-overlay" id="lightboxOverlay">
+  <div class="lightbox">
+    <button class="modal-close lightbox-close" id="lightboxClose"><i class="ti ti-x"></i></button>
+    <img id="lightboxImg" src="" alt="" />
+    <p id="lightboxCaption"></p>
   </div>
-</section>
+</div>
 
 <section id="opiniones">
   <div class="inner">
@@ -301,6 +371,67 @@
 
 <div class="footer">
   © 2026 <strong>Kanguro</strong> Indumentaria · Pueyrredón 2293, Buenos Aires
+</div>
+
+<!-- Panel Admin / Developer (modal overlay) -->
+<div class="modal-overlay" id="adminOverlay">
+  <div class="modal admin-modal" id="adminPanel">
+    <div class="admin-modal-header">
+      <span id="adminPanelLabel"><i class="ti ti-shield-check"></i> Panel Admin</span>
+      <button class="modal-close" id="adminClose"><i class="ti ti-x"></i></button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="gallery">
+        <i class="ti ti-photo"></i> Galería
+      </button>
+      <button class="admin-tab" data-tab="comments">
+        <i class="ti ti-message-2"></i> Comentarios
+      </button>
+      <button class="admin-tab" data-tab="orders">
+        <i class="ti ti-package"></i> Pedidos
+      </button>
+      <button class="admin-tab dev-only" data-tab="users" style="display:none">
+        <i class="ti ti-users"></i> Usuarios
+      </button>
+    </div>
+
+    <!-- Tab: Galería -->
+    <div class="admin-pane" id="tabGallery">
+      <div class="admin-add-form">
+        <select id="galleryCategory" class="admin-role-select" style="min-width:140px">
+          <option value="remeras">👕 Remeras</option>
+          <option value="buzos">🧥 Buzos y camperas</option>
+          <option value="banderas">🚩 Banderas</option>
+          <option value="matero">☕ Set matero</option>
+          <option value="cole">🎒 Vuelta al cole</option>
+          <option value="regalos">🎁 Regalos</option>
+        </select>
+        <input type="url" id="galleryUrl" placeholder="URL de la imagen (https://...)" />
+        <input type="text" id="galleryCaption" placeholder="Descripción (opcional)" maxlength="80" />
+        <button class="admin-btn-add" id="addGalleryBtn">
+          <i class="ti ti-plus"></i> Agregar
+        </button>
+      </div>
+      <div id="adminGalleryList" class="admin-list"></div>
+    </div>
+
+    <!-- Tab: Comentarios -->
+    <div class="admin-pane" id="tabComments" style="display:none">
+      <div id="adminCommentList" class="admin-list"></div>
+    </div>
+
+    <!-- Tab: Pedidos -->
+    <div class="admin-pane" id="tabOrders" style="display:none">
+      <div id="adminOrderList" class="admin-list"></div>
+    </div>
+
+    <!-- Tab: Usuarios (developer only) -->
+    <div class="admin-pane" id="tabUsers" style="display:none">
+      <div id="adminUserList" class="admin-list"></div>
+    </div>
+  </div>
 </div>
 
 <script type="module" src="script.js"></script>
