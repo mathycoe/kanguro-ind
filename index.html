@@ -38,6 +38,8 @@
   <a data-section="talles">Talles</a>
   <a data-section="proceso">¿Cómo trabajamos?</a>
   <a data-section="contacto">Contacto</a>
+  <a data-section="galeria">Galería</a>
+  <a data-section="opiniones">Opiniones</a>
   <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro/oscuro">
     <i class="ti ti-sun" id="themeIcon"></i>
   </button>
@@ -195,6 +197,36 @@
       </div>
     </div>
   </div>
+  </div>
+</section>
+
+<section id="galeria" class="mid">
+  <div class="inner">
+  <p class="section-label">Nuestro trabajo</p>
+  <h2 class="section-heading">Galería de productos</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item animate">👕</div>
+    <div class="gallery-item animate">🧥</div>
+    <div class="gallery-item animate">🚩</div>
+    <div class="gallery-item animate">🎒</div>
+    <div class="gallery-item animate">☕</div>
+    <div class="gallery-item animate">🎁</div>
+  </div>
+  </div>
+</section>
+
+<section id="opiniones">
+  <div class="inner">
+  <p class="section-label">Lo que dicen</p>
+  <h2 class="section-heading">Opiniones</h2>
+
+  <form class="comments-form" id="commentForm">
+    <input type="text" id="commentName" placeholder="Tu nombre" maxlength="40" required />
+    <textarea id="commentText" placeholder="¿Qué te pareció?" maxlength="300" required></textarea>
+    <button type="submit" class="comments-submit">Publicar opinión</button>
+  </form>
+
+  <div class="comments-list" id="commentsList"></div>
   </div>
 </section>
 

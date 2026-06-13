@@ -54,6 +54,47 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => sectionObserver.observe(s));
 
+// Comentarios con localStorage
+const commentForm = document.getElementById('commentForm');
+const commentsList = document.getElementById('commentsList');
+
+function loadComments() {
+  const comments = JSON.parse(localStorage.getItem('kanguro_comments') || '[]');
+  if (comments.length === 0) {
+    commentsList.innerHTML = '<p class="comments-empty">Todavía no hay opiniones. ¡Sé el primero!</p>';
+    return;
+  }
+  commentsList.innerHTML = comments.map(c => `
+    <div class="comment-card">
+      <div class="comment-header">
+        <div class="comment-avatar">${c.name[0]}</div>
+        <span class="comment-name">${c.name}</span>
+        <span class="comment-date">${c.date}</span>
+      </div>
+      <p class="comment-text">${c.text}</p>
+    </div>
+  `).join('');
+}
+
+commentForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('commentName').value.trim();
+  const text = document.getElementById('commentText').value.trim();
+  if (!name || !text) return;
+
+  const comments = JSON.parse(localStorage.getItem('kanguro_comments') || '[]');
+  comments.unshift({
+    name,
+    text,
+    date: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'short', year: 'numeric' })
+  });
+  localStorage.setItem('kanguro_comments', JSON.stringify(comments));
+  commentForm.reset();
+  loadComments();
+});
+
+loadComments();
+
 // Scroll suave al hacer click en nav
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
