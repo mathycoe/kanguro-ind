@@ -110,6 +110,12 @@ section { padding: 2.75rem 1.5rem; background: var(--bg-primary); }
 section.mid { background: var(--bg-secondary); }
 section.dark { background: #0d0d0d; }
 
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .section-label {
   font-size: 10px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 3px; color: var(--red); margin-bottom: 6px;
