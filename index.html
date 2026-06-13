@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanguro Indumentaria — Buenos Aires</title>
   <meta name="description" content="Indumentaria personalizada en Buenos Aires. Remeras, buzos, banderas, egresados y más. Pueyrredón 2293." />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -80,6 +80,17 @@
       </form>
     </div>
 
+    <div id="authVerify" style="display:none">
+      <h3 class="modal-title">Verificá tu email</h3>
+      <div class="verify-box">
+        <i class="ti ti-mail-check verify-icon"></i>
+        <p class="verify-msg">Te enviamos un email de verificación. Revisá tu bandeja de entrada y hacé click en el enlace.</p>
+      </div>
+      <button class="auth-submit" id="checkVerifiedBtn" style="width:100%; margin-top:1rem;">Ya verifiqué mi email</button>
+      <p class="auth-switch" style="margin-top:.75rem;">¿No llegó? <a href="#" id="resendBtn">Reenviar email</a></p>
+      <p class="auth-error" id="verifyError"></p>
+    </div>
+
     <div id="authUser" style="display:none">
       <h3 class="modal-title">Mi cuenta</h3>
       <div class="auth-user-info">
@@ -87,6 +98,8 @@
         <div>
           <p id="userName" style="font-weight:600; font-size:14px;"></p>
           <p id="userEmail" style="font-size:12px; color:var(--text-secondary);"></p>
+          <span id="verifiedBadge" class="badge-verified"><i class="ti ti-circle-check"></i> Email verificado</span>
+          <span id="unverifiedBadge" class="badge-unverified" style="display:none"><i class="ti ti-alert-circle"></i> Sin verificar</span>
         </div>
       </div>
       <button class="auth-logout" id="logoutBtn">
@@ -289,6 +302,6 @@
   © 2026 <strong>Kanguro</strong> Indumentaria · Pueyrredón 2293, Buenos Aires
 </div>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
