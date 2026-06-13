@@ -340,6 +340,110 @@ section.dark { background: #0d0d0d; }
 .comment-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 .comments-empty { font-size: 13px; color: var(--text-muted); text-align: center; padding: 1.5rem 0; }
 
+/* ── Nav derecha ── */
+.nav-right {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  display: flex; align-items: center;
+}
+.nav-auth-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 11px;
+  padding: 0 12px; display: flex; align-items: center; gap: 5px;
+  height: 100%; letter-spacing: 0.5px; text-transform: uppercase;
+  font-family: inherit; font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-auth-btn:hover { color: var(--red); }
+.nav-auth-btn i { font-size: 15px; }
+.nav-auth-btn.logged-in { color: var(--red); }
+
+/* ── Modal ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem;
+  width: min(90vw, 360px); position: relative;
+  animation: modalIn 0.2s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 18px;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-title { font-size: 18px; font-weight: 600; margin-bottom: 1.25rem; }
+
+/* ── Auth form ── */
+.auth-form { display: flex; flex-direction: column; gap: 10px; }
+.auth-form input {
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  font-size: 13px; color: var(--text-primary);
+  font-family: inherit; outline: none;
+  transition: border-color 0.2s;
+}
+.auth-form input:focus { border-color: var(--red); }
+.auth-form input::placeholder { color: var(--text-muted); }
+.auth-submit {
+  background: var(--red); color: #fff; border: none;
+  padding: 11px; border-radius: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; cursor: pointer;
+  font-family: inherit; transition: background 0.2s;
+  margin-top: 4px;
+}
+.auth-submit:hover { background: #a81818; }
+.auth-switch { font-size: 12px; color: var(--text-muted); text-align: center; }
+.auth-switch a { color: var(--red); text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+.auth-error { font-size: 12px; color: #f87171; text-align: center; min-height: 16px; }
+.auth-user-info {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px; margin-bottom: 1rem;
+}
+.auth-logout {
+  width: 100%; background: none; border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px; cursor: pointer;
+  font-size: 12px; font-weight: 500; color: var(--text-secondary);
+  font-family: inherit; display: flex; align-items: center;
+  justify-content: center; gap: 6px; transition: border-color 0.2s, color 0.2s;
+}
+.auth-logout:hover { border-color: var(--red); color: var(--red); }
+
+/* ── Comment gate ── */
+.comment-gate {
+  background: var(--bg-card); border: 1px dashed var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+  text-align: center; margin-bottom: 1.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.comment-gate i { font-size: 22px; color: var(--text-muted); }
+.comment-gate p { font-size: 13px; color: var(--text-secondary); }
+.comment-gate a { color: var(--red); text-decoration: none; }
+.comment-gate a:hover { text-decoration: underline; }
+
+/* ── Delete button en comentarios ── */
+.comment-delete {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 14px;
+  padding: 2px 4px; transition: color 0.2s;
+  margin-left: 6px;
+}
+.comment-delete:hover { color: #f87171; }
+
 /* ── Overrides modo claro para colores hardcodeados ── */
 body.light .hero { background: #fff; }
 body.light .hero::before { background: repeating-linear-gradient(-55deg, transparent, transparent 38px, rgba(185,28,28,0.03) 38px, rgba(185,28,28,0.03) 39px); }
