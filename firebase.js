@@ -1,4 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,19 +7,15 @@ import {
   onAuthStateChanged,
   sendEmailVerification,
   reload
-} from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js';
 
-// ─────────────────────────────────────────────────────
-// ⚠️  Reemplazá estos valores con tu firebaseConfig
-//     (Configuración del proyecto → Tus apps → Web)
-// ─────────────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey:            "TU_API_KEY",
-  authDomain:        "TU_PROJECT.firebaseapp.com",
-  projectId:         "TU_PROJECT_ID",
-  storageBucket:     "TU_PROJECT.firebasestorage.app",
-  messagingSenderId: "TU_SENDER_ID",
-  appId:             "TU_APP_ID"
+  apiKey:            "AIzaSyAOxt-SvqNBIEetp44vraAbNIsHJCmsT5Q",
+  authDomain:        "kanguro-ind.firebaseapp.com",
+  projectId:         "kanguro-ind",
+  storageBucket:     "kanguro-ind.firebasestorage.app",
+  messagingSenderId: "489504043781",
+  appId:             "1:489504043781:web:cab742e1076f5297c33d6c"
 };
 // ─────────────────────────────────────────────────────
 
