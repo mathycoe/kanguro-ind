@@ -197,6 +197,10 @@ section.dark { background: #0d0d0d; }
 .step p { font-size: 12px; color: var(--text-secondary); margin-top: 5px; line-height: 1.55; }
 
 .cta-wrap { margin-top: 1.75rem; }
+
+@media (min-width: 640px) {
+  .cta-wrap { text-align: center; }
+}
 .cta-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--red); color: #fff; border: none;
